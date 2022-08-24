@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ul {
+    @apply list-disc;
+  }
+  h1 {
+    @apply text-5xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+}
+@layer base {
+  blockquote {
+    @apply border-l-2 border-l-gray-400 pl-4 text-gray-500;
+  }
+}
+/* .f{
+  background-color:#7367f0
+} */
+/* 
+@layer base {
+  @font-face {
+    font-family: Montserrat;
+    font-weight: 200;
+    src: url(./app/assets/fonts/Montserrat-ExtraLight.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-ExtraLight.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: montera;
+    font-weight: 300;
+    src: url(./app/assets/fonts/Montserrat-Light.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-Light.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: montera;
+    font-weight: 400;
+    src: url(./app/assets/fonts/Montserrat-Thin.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-Thin.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: montera;
+    font-weight: 500;
+    src: url(./app/assets/fonts/Montserrat-Regular.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-Regular.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: montera;
+    font-weight: 600;
+    src: url(./app/assets/fonts/Montserrat-Medium.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-Medium.woff2) format("woff2");
+  }
+
+  @font-face {
+    font-family: montera;
+    font-weight: 700;
+    src: url(./app/assets/fonts/Montserrat-SemiBold.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-SemiBold.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: montera;
+    font-weight: 800;
+    src: url(./app/assets/fonts/Montserrat-Bold.woff) format("woff");
+    src: url(./app/assets/fonts/Montserrat-Bold.woff2) format("woff2");
+  }
+} */
