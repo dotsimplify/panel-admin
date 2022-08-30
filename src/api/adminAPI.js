@@ -24,9 +24,17 @@ export const adminAPI = {
       .then((res) => res.data);
   },
   updateAccount: async (details) => {
-    const { username, ...rest } = details;
+    const { id, ...rest } = details;
     return axios
-      .put(`${baseURL}/update-account/${username}`, rest)
+      .put(`${baseURL}/update-account/${id}`, rest)
       .then((res) => res.data);
+  },
+  createAccount: async (user) => {
+    return axios
+      .post(`${baseURL}/create-new-account`, user)
+      .then((res) => res.data);
+  },
+  deleteAccount: async (id) => {
+    return axios.get(`${baseURL}/delete-account/${id}`).then((res) => res.data);
   },
 };

@@ -17,13 +17,13 @@ export const userRequest = createAsyncThunk(
   }
 );
 
-// async thunk request to get calls list
+// async thunk request to get all accounts list
 export const getAccountValueRequest = createAsyncThunk(
   "user/getAccountValueRequest",
   async (userdata, { dispatch, rejectWithValue }) => {
     try {
       const data = await adminAPI.getAccountValue();
-      dispatch(getTradingData(data));
+      dispatch(getTradingData(data.accounts));
     } catch (error) {
       if (error.response) {
         dispatch(appLoading(false));
@@ -84,10 +84,48 @@ export const updateAccountRequest = createAsyncThunk(
   }
 );
 
+// async thunk request to get single account list
+export const createAccountRequest = createAsyncThunk(
+  "user/createAccountRequest",
+  async (userdata, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(appLoading(true));
+      const data = await adminAPI.createAccount(userdata);
+      dispatch(setMessage(data.message));
+      dispatch(appLoading(false));
+    } catch (error) {
+      dispatch(appLoading(false));
+      if (error.response) {
+        dispatch(appLoading(false));
+        return rejectWithValue(error.response.data.message);
+      }
+    }
+  }
+);
+
+// async thunk request to get single account list
+export const deleteAccountRequest = createAsyncThunk(
+  "user/deleteAccountRequest",
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(appLoading(true));
+      const data = await adminAPI.deleteAccount(id);
+      dispatch(setMessage(data.message));
+      dispatch(appLoading(false));
+    } catch (error) {
+      dispatch(appLoading(false));
+      if (error.response) {
+        dispatch(appLoading(false));
+        return rejectWithValue(error.response.data.message);
+      }
+    }
+  }
+);
+
 const initialState = {
   userDetails: {},
   hasError: "",
-  tradingData: {},
+  tradingData: [],
   allAccounts: [],
   singleAccount: {},
 };
@@ -120,6 +158,9 @@ export const userSlice = createSlice({
       state.hasError = action.payload;
     },
     [getAllAccountsRequest.rejected]: (state, action) => {
+      state.hasError = action.payload;
+    },
+    [deleteAccountRequest.rejected]: (state, action) => {
       state.hasError = action.payload;
     },
   },

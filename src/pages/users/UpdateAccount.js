@@ -8,6 +8,7 @@ import {
 } from "../../features/adminUserSlice";
 import validationSchema from "../../utils/validations/validationSchemas";
 import NumberInput from "../../components/NumberInput";
+import CustomInput from "../../components/CustomInput";
 import CustomBtn from "../../components/CustomBtn";
 import MessageModal from "../../shared/loader/MessageModal";
 import { setMessage } from "../../features/appSlice";
@@ -27,9 +28,7 @@ const UpdateAccount = () => {
   };
 
   const onCreate = (values) => {
-    console.log(singleAccount._id, "id");
-    let dataWithId = { ...values, username: singleAccount.username };
-    console.log(dataWithId, "datewithid");
+    let dataWithId = { ...values, id: singleAccount._id };
     dispatch(updateAccountRequest(dataWithId));
   };
 
@@ -51,16 +50,19 @@ const UpdateAccount = () => {
             <Formik
               enableReinitialize
               initialValues={{
-                balance: singleAccount.balance ? singleAccount.balance : "",
+                balance: singleAccount.balance ? singleAccount.balance : 0,
+                brokerName: singleAccount.brokerName
+                  ? singleAccount.brokerName
+                  : "",
                 usedMargin: singleAccount.usedMargin
                   ? singleAccount.usedMargin
-                  : "",
+                  : 0,
                 profitOrLossMin: singleAccount.profitOrLossMin
                   ? singleAccount.profitOrLossMin
-                  : "",
+                  : 0,
                 profitOrLossMax: singleAccount.profitOrLossMax
                   ? singleAccount.profitOrLossMax
-                  : "",
+                  : 0,
               }}
               validationSchema={validationSchema.updateAccountValidation}
               onSubmit={onCreate}
@@ -68,6 +70,15 @@ const UpdateAccount = () => {
               {({ errors, touched }) => (
                 <Form autoComplete="off">
                   <div className={`flex justify-start items-center pt-4 px-4`}>
+                    <div className={`px-4 w-1/4`}>
+                      <CustomInput
+                        errors={errors.brokerName}
+                        touched={touched.brokerName}
+                        title="Enter Broker Name"
+                        name="brokerName"
+                        placeholder="Enter Broker Name"
+                      />
+                    </div>
                     <div className={`px-4 w-1/4`}>
                       <NumberInput
                         errors={errors.balance}
@@ -90,18 +101,18 @@ const UpdateAccount = () => {
                       <NumberInput
                         errors={errors.profitOrLossMin}
                         touched={touched.profitOrLossMin}
-                        title="Enter Minimum Profit or Loss"
+                        title="Min Profit or Loss"
                         name="profitOrLossMin"
-                        placeholder="Enter Min Profit or Loss"
+                        placeholder="Min Profit or Loss"
                       />
                     </div>
                     <div className={`px-4 w-1/4`}>
                       <NumberInput
                         errors={errors.profitOrLossMax}
                         touched={touched.profitOrLossMax}
-                        title="Enter Maximum Profit or Loss"
+                        title="Max Profit or Loss"
                         name="profitOrLossMax"
-                        placeholder="Enter Maximum Profit or Loss"
+                        placeholder="Max Profit or Loss"
                       />
                     </div>
                   </div>

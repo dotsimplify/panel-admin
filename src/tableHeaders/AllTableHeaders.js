@@ -8,7 +8,11 @@ const allTableHeaders = {
       stringClip: "20",
       textHighlight: true,
     },
-
+    {
+      name: "Broker Name",
+      code: "brokerName",
+      type: "string",
+    },
     {
       name: "Balance",
       code: "balance",

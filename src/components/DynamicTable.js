@@ -335,7 +335,7 @@ const DynamicTable = (props) => {
                       hideUpdateIcon={props.hideUpdateIcon}
                       updateLinkString={props.updateLinkString}
                       updateLinkTerm={
-                        props.updateLinkTerm === "id" ? all.username : all.slug
+                        props.updateLinkTerm === "id" ? all._id : all.slug
                       }
                       deleteLinkString={props.deleteLinkString}
                       deleteLinkTerm={

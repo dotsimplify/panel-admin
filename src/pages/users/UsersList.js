@@ -37,10 +37,12 @@ const UsersList = () => {
   return (
     <div className="dark:bg-tableclmn bg-secoundry shadow-dhruv mt-4 font-semibold text-iconColor">
       <TableHeader
-        showNewButton={true}
         postsPerPage={postsPerPage}
         setPostsPerPage={setPostsPerPage}
-        heading={"Users List"}
+        heading={"Accounts List"}
+        routs="/users/create-new-account"
+        showNewButton={false}
+        ButtonName="Create New Account"
       />
       {faqArray && faqArray.length > 0 ? (
         <div>
@@ -50,7 +52,8 @@ const UsersList = () => {
             tableActionHeader={true}
             updateLinkString="/users/update-account"
             updateLinkTerm="id"
-            hideDeleteIcon={true}
+            deleteLinkString="/users/delete-account"
+            deleteLinkTerm="id"
           />
           <Pagination
             postsPerPage={postsPerPage}

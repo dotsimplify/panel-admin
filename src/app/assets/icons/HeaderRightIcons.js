@@ -1,6 +1,6 @@
 import React from "react";
 import { FaRegBell } from "react-icons/fa";
-import { BsCart2, BsSun, BsMoon } from "react-icons/bs";
+import { BsSun, BsMoon } from "react-icons/bs";
 
 function HeaderRightIcons(props) {
   return (

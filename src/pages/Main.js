@@ -37,6 +37,9 @@ const Main = () => {
         <thead>
           <tr>
             <th className="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+              Broker Name
+            </th>
+            <th className="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
               Balance
             </th>
             <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
@@ -51,28 +54,35 @@ const Main = () => {
           </tr>
         </thead>
         <tbody className="bg-white dark:bg-slate-800">
-          {tradingData && (
-            <tr>
-              <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                {tradingData.balance}$
-              </td>
-              <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                {tradingData.equity}$
-              </td>
-              <td className="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 dark:text-slate-400">
-                {tradingData.margin}$
-              </td>
-              <td
-                className={` border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ${
-                  isNegative(tradingData.profitOrLoss)
-                    ? "text-red-500"
-                    : "text-green-500"
-                } `}
-              >
-                {tradingData.profitOrLoss}$
-              </td>
-            </tr>
-          )}
+          {tradingData &&
+            tradingData.length &&
+            tradingData.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                    {item.brokerName}$
+                  </td>
+                  <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                    {item.balance}$
+                  </td>
+                  <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                    {item.equity}$
+                  </td>
+                  <td className="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 dark:text-slate-400">
+                    {item.margin}$
+                  </td>
+                  <td
+                    className={` border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ${
+                      isNegative(item.profitOrLoss)
+                        ? "text-red-500"
+                        : "text-green-500"
+                    } `}
+                  >
+                    {item.profitOrLoss}$
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

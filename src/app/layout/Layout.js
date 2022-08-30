@@ -46,7 +46,6 @@ const Layout = (props) => {
         navigate("/");
         return;
       }
-      console.log(decodedToken.exp, "decoded exp", Date.now() / 1000);
       if (decodedToken.exp > Date.now() / 1000) {
         setAuthorizationToken(JSON.parse(token));
         dispatch(authenticationStatus(true));
@@ -58,7 +57,6 @@ const Layout = (props) => {
             rf_token: refreshToken,
           })
           .then((result) => {
-            console.log("new token", result.data.accessToken);
             let newAccessToken = result.data.accessToken;
             localStorage.setItem("panelToken", JSON.stringify(newAccessToken));
             Cookie.set("refreshToken", result.data.refreshToken, {
