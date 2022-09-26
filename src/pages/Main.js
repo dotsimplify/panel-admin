@@ -15,6 +15,9 @@ const Main = () => {
     return false;
   }
   useEffect(() => {
+    dispatch(getAccountValueRequest());
+  }, []);
+  useEffect(() => {
     const intervalId = setInterval(
       () => dispatch(getAccountValueRequest()),
       120000
