@@ -55,7 +55,7 @@ const Main = () => {
         </thead>
         <tbody className="bg-white dark:bg-slate-800">
           {tradingData &&
-            tradingData.length &&
+            tradingData.length > 0 &&
             tradingData.map((item, index) => {
               return (
                 <tr key={index}>
