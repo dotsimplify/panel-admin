@@ -3,20 +3,41 @@ import { useSelector, useDispatch } from "react-redux";
 import LiveIcon from "../app/assets/icons/live.png";
 import { getAccountValueRequest } from "../features/adminUserSlice";
 
+const isWeekendInIndia = () => {
+  const currentDate = new Date();
+  const currentOffset = currentDate.getTimezoneOffset();
+  const ISTOffset = 330; // IST offset UTC +5:30
+  const ISTTime = new Date(
+    currentDate.getTime() + (ISTOffset + currentOffset) * 60000
+  );
+  const indiaNow = new Date(ISTTime);
+  const monday = indiaNow.getDay() === 1;
+  const hours = indiaNow.getHours();
+  const minutes1 = indiaNow.getMinutes();
+  const HH = hours < 10 ? `0${hours}` : hours;
+  const MM = minutes1 < 10 ? `0${minutes1}` : minutes1;
+  const currentTimeNow1 = `${HH}:${MM}`;
+  return (
+    (indiaNow.getDay() === 6 && currentTimeNow1 > "04:30") ||
+    indiaNow.getDay() === 0 ||
+    (monday && currentTimeNow1 < "04:30")
+  );
+};
+
 const Main = () => {
   const dispatch = useDispatch();
-
   let tradingData = useSelector((state) => state.user.tradingData);
+
   function isNegative(num) {
     if (Math.sign(num) === -1) {
       return true;
     }
-
     return false;
   }
+
   useEffect(() => {
     dispatch(getAccountValueRequest());
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     const intervalId = setInterval(
       () => dispatch(getAccountValueRequest()),
@@ -26,7 +47,7 @@ const Main = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="p-4 bg-white mt-4 border border-gray-200 min-h-[20rem]">
@@ -81,7 +102,7 @@ const Main = () => {
                         : "text-green-500"
                     } `}
                   >
-                    {item.profitOrLoss}$
+                    {isWeekendInIndia ? 0 : item.profitOrLoss}$
                   </td>
                 </tr>
               );
