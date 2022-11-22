@@ -48,7 +48,6 @@ const Main = () => {
       clearInterval(intervalId);
     };
   }, [dispatch]);
-
   return (
     <div className="p-4 bg-white mt-4 border border-gray-200 min-h-[20rem]">
       <div className="flex items-center">
@@ -102,7 +101,7 @@ const Main = () => {
                         : "text-green-500"
                     } `}
                   >
-                    {isWeekendInIndia ? 0 : item.profitOrLoss}$
+                    {isWeekendInIndia() ? 0 : item.profitOrLoss}$
                   </td>
                 </tr>
               );
