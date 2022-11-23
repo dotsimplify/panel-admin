@@ -89,7 +89,7 @@ const Main = () => {
                     {item.balance}$
                   </td>
                   <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                    {item.equity}$
+                    {item.equity.toFixed(2)}$
                   </td>
                   <td className="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 dark:text-slate-400">
                     {item.margin}$
