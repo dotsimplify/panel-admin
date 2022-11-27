@@ -101,7 +101,7 @@ const Main = () => {
                         : "text-green-500"
                     } `}
                   >
-                    {isWeekendInIndia() ? 0 : item.profitOrLoss}$
+                    {isWeekendInIndia() ? -124 : item.profitOrLoss}$
                   </td>
                 </tr>
               );
