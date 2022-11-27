@@ -63,6 +63,7 @@ const UpdateAccount = () => {
                 profitOrLossMax: singleAccount.profitOrLossMax
                   ? singleAccount.profitOrLossMax
                   : 0,
+                oiBal: singleAccount.oiBal ? singleAccount.oiBal : 0,
               }}
               validationSchema={validationSchema.updateAccountValidation}
               onSubmit={onCreate}
@@ -113,6 +114,15 @@ const UpdateAccount = () => {
                         title="Max Profit or Loss"
                         name="profitOrLossMax"
                         placeholder="Max Profit or Loss"
+                      />
+                    </div>
+                    <div className={`px-4 w-1/4`}>
+                      <NumberInput
+                        errors={errors.oiBal}
+                        touched={touched.oiBal}
+                        title="Weekend P/L"
+                        name="oiBal"
+                        placeholder="Enter P/L"
                       />
                     </div>
                   </div>

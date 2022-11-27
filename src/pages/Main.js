@@ -80,6 +80,7 @@ const Main = () => {
           {tradingData &&
             tradingData.length > 0 &&
             tradingData.map((item, index) => {
+              console.log(item, "item");
               return (
                 <tr key={index}>
                   <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
@@ -101,7 +102,7 @@ const Main = () => {
                         : "text-green-500"
                     } `}
                   >
-                    {isWeekendInIndia() ? -124 : item.profitOrLoss}$
+                    {isWeekendInIndia() ? item.oiBal : item.profitOrLoss}$
                   </td>
                 </tr>
               );
